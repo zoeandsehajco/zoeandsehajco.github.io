@@ -521,21 +521,27 @@ textarea.form-control {
     }
 /* --- Responsive Layout Adjustments --- */
 
-/* Mobile first: stack nav items */
+/* Mobile first: keep nav items on one line with smaller font */
 @media (max-width: 768px) {
   .nav-links {
-    flex-direction: column;
+    flex-direction: row;       /* Keep nav links in a row */
     align-items: center;
     gap: 10px;
-    padding: 10px 0;
+    padding: 10px 5px;
+    font-size: 14px;           /* Smaller font for narrow screens */
+    overflow-x: auto;          /* Allow horizontal scroll if needed */
+    white-space: nowrap;       /* Prevent wrapping */
   }
 
-  .nav-links a {
-    font-size: 18px;
+  .nav-links li {
+    flex-shrink: 0;            /* Prevent shrinking */
   }
 
   .product-container {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr; /* One product per row on mobile */
+    gap: 15px;
+    padding: 0 10px;
   }
 
   .product-box img {
