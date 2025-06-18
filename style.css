@@ -519,3 +519,90 @@ textarea.form-control {
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
     }
+/* --- Responsive Layout Adjustments --- */
+
+/* Mobile first: stack nav items */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+  }
+
+  .product-container {
+    grid-template-columns: 1fr;
+  }
+
+  .product-box img {
+    max-height: 250px;
+    object-fit: cover;
+  }
+
+  .product-info h1 {
+    font-size: 26px;
+  }
+
+  .product-info p,
+  .about-us p,
+  .contact-us p {
+    font-size: 16px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cart-item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .col {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .welcome-box h1 {
+    font-size: 28px;
+  }
+
+  .welcome-box p {
+    font-size: 16px;
+  }
+
+  .welcome-video-element {
+    width: 100%;
+  }
+
+  .product-detail {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .product-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .thumbnails {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .thumbnails img {
+    width: 70px;
+    height: 70px;
+  }
+}
