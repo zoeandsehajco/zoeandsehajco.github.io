@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop | ZoeAndSehajCo</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Add your existing CSS here for styling */
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .product-box {
+      width: calc(33.33% - 20px);
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .product-box img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .product-box h3 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    .product-box p {
+      font-size: 16px;
+      color: #333;
+    }
+    .product-box button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .product-box button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="logo.jpeg" alt="ZoeAndSehajCo Logo" class="logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li> <!-- Cart count here -->
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shop">
+      <h1>Our Collection</h1>
+      <div class="product-container">
+
+        <!-- Product 1 -->
+        <div class="product-box" data-id="2">
+            <img src="Strawberry Shortcake.jpeg" alt="Strawberry Shortcake Bracelet">
+            <h3>Strawberry Latte</h3>
+          </a>
+          <p>$6.30 - $6.70 </p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-box" data-id="3">
+            <img src="Lavander. jpeg" alt="Lavender Bracelet">
+            <h3>Lavender</h3>
+          </a>
+          <p>$6.30 - $6.70 </p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-box" data-id="4">
+            <img src="Cotton Candy.jpeg" alt="Cotton Candy Bracelet">
+            <h3>Cotton Candy</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-box" data-id="5">
+            <img src="Pink Lemonade .jpeg" alt="Pink Lemonade Bracelet">
+            <h3>Pink Lemonade</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-box" data-id="6">
+            <img src="Ocean Waves.jpeg" alt="Ocean Waves Bracelet">
+            <h3>Ocean Waves</h3>
+          </a>
+          <p>$6.30 - $6.70 </p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-box" data-id="7">
+            <img src="Beach Day.jpeg" alt="Beach Day Bracelet">
+            <h3>Beach Day</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-box" data-id="8">
+            <img src="Minty Fresh.jpeg" alt="Minty Fresh Bracelet">
+            <h3>Minty Fresh</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-box" data-id="9">
+            <img src="Rapunzel.jpeg" alt=" Rapunzel">
+            <h3>Rapunzel</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product-box" data-id="10">
+            <img src="Strawberry Matcha.jpeg" alt="Strawberry Matcha Bracelet">
+            <h3>Strawberry Matcha</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-box" data-id="11">
+            <img src="Summer Skies.jpeg" alt="Summer Skies Bracelet">
+            <h3>Summer Skies</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-box" data-id="12">
+            <img src="Cherry.jpeg" alt="Cherry Bracelet">
+            <h3>Cherry</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to
+             Cart</button>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-box" data-id="13">
+            <img src="Raspberry Sorbet.jpeg" alt="Raspberry Sorbet Bracelet">
+            <h3>Raspberry Sorbet</h3>
+          </a>
+          <p>$6.30 - $6.70</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart notification -->
+  <div id="cart-notification" style="display:none; position: fixed; top: 30px; left: 50%; transform: translateX(-50%); background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; z-index: 1000;">
+    Added to cart!
+  </div>
+
+ <footer>
+    <p>&copy; 2025 ZoeAndSehajCo</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Load cart or initialize
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+      // Update cart counter in navbar
+      function updateCartCount() {
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const countEl = document.getElementById('cart-count');
+        if (countEl) countEl.textContent = count;
+      }
+  
+      // Add to cart function
+      function addToCart(button) {
+        const productBox = button.closest('.product-box');
+        const productId = productBox.getAttribute('data-id');
+        const name = productBox.querySelector('h3')?.textContent.trim();
+  
+        // Safely parse the price
+        const priceElement = productBox.querySelector('p');
+        let price = 0;
+        if (priceElement) {
+          const priceText = priceElement.textContent.replace(/[^0-9.]/g, '');
+          price = parseFloat(priceText);
+        }
+  
+        const image = productBox.querySelector('img')?.src;
+  
+        // Validate all fields
+        if (!name || isNaN(price) || !image) {
+          alert('Product info missing or invalid.');
+          return;
+        }
+  
+        // Add or update item in cart
+        const existing = cart.find(item => item.id === productId);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({
+            id: productId,
+            name,
+            price,
+            image,
+            quantity: 1
+          });
+        }
+  
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        showNotification();
+      }
+  
+      // Show "Added to cart!" message
+      function showNotification() {
+        const note = document.getElementById('cart-notification');
+        if (!note) return;
+        note.style.display = 'block';
+        setTimeout(() => {
+          note.style.display = 'none';
+        }, 2000);
+      }
+  
+      // Attach event listeners
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', () => addToCart(btn));
+      });
+  
+      // Initialize counter on load
+      updateCartCount();
+    });
+  </script>
+ß  

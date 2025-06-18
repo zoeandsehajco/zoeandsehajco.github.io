@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home | ZoeandSehajco.</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="logo.jpeg" alt="ZoeAndSehajCo Logo" class="logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li>
+          <a href="cart.html">
+            Cart (<span id="cart-count">0</span>)
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Welcome Video Section -->
+  <section class="welcome-video">
+    <video autoplay muted loop playsinline class="welcome-video-element">
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="contact-us">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, feel free to reach out to us. We'd love to hear from you!</p>
+    <p>Contact us at: <a href="mailto:zoeandsehajco@gmail.com">zoeandsehajco@gmail.com</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ZoeandSehajco.</p>
+  </footer>
+
+  <!-- Cart Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((sum, item) => sum + (parseInt(item.quantity) || 0), 0);
+      const cartCountEl = document.getElementById('cart-count');
+      if (cartCountEl) cartCountEl.textContent = totalItems;
+    });
+  </script>
+</body>
+</html>
