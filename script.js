@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const imageSrc = item.image || 'default-image.jpg';
       const name = item.name || 'Unnamed product';
 
-      // Use sizePrice for price depending on size
       const price = parseFloat(item.sizePrice) || 0;
       const quantity = parseInt(item.quantity) || 1;
       const id = item.id || '';
@@ -122,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCartCount();
   }
 
-  // Prices by size
   const sizePrices = {
     XS: 6.30,
     S: 6.40,
@@ -224,11 +222,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (item) {
       item.size = newSize;
 
-      // Update price based on size selected
       if (newSize && sizePrices[newSize]) {
         item.sizePrice = sizePrices[newSize];
       } else {
-        item.sizePrice = 0; // or default price
+        item.sizePrice = 0;
       }
 
       saveCart(cart);
@@ -255,7 +252,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Checkout with size validation and open Gmail web compose
   const checkoutBtn = document.getElementById('checkout-link');
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', function (e) {
@@ -268,7 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // Check if any item missing size selection
       const missingSizeItems = cart.filter(item => !item.size || item.size.trim() === '');
 
       if (missingSizeItems.length > 0) {
@@ -278,7 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       let emailBody = `Hello Zoe and SehajCo,%0A%0AI would like to place an order with the following details:%0A%0A`;
       emailBody += `1. Full Name:%0A2. Shipping Address:%0A3. Email Address:%0A4. Payment Method (Venmo or CashApp):%0A5. Payment Account Username:%0A%0A`;
-
       emailBody += `Order Summary:%0A`;
 
       cart.forEach(item => {
@@ -291,10 +285,15 @@ document.addEventListener('DOMContentLoaded', function () {
       const subject = encodeURIComponent('Checkout Order');
       const recipient = 'zoeandsehajco@gmail.com';
 
-      // Open Gmail web compose in new tab
-      const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${emailBody}&tf=1`;
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-      window.open(gmailComposeUrl, '_blank');
+      if (isMobile) {
+        const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${emailBody}`;
+        window.location.href = mailtoLink;
+      } else {
+        const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${emailBody}&tf=1`;
+        window.open(gmailComposeUrl, '_blank');
+      }
     });
   }
 
