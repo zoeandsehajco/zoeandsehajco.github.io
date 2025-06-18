@@ -521,29 +521,35 @@ textarea.form-control {
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
     }
+
 /* --- Responsive Layout Adjustments --- */
 
+/* Mobile first: keep nav items on one line with smaller font */
 @media (max-width: 768px) {
   .nav-links {
-    flex-direction: column;
+    flex-direction: row;       /* Keep nav links in a row */
     align-items: center;
     gap: 10px;
-    padding: 10px 0;
+    padding: 10px 5px;
+    font-size: 14px;           /* Smaller font for narrow screens */
+    overflow-x: auto;          /* Allow horizontal scroll if needed */
+    white-space: nowrap;       /* Prevent wrapping */
   }
 
-  .nav-links a {
-    font-size: 18px;
+  .nav-links li {
+    flex-shrink: 0;            /* Prevent shrinking */
   }
 
   .product-container {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr; /* One product per row on mobile */
+    gap: 15px;
+    padding: 0 10px;
   }
 
   .product-box img {
     max-height: 250px;
-    height: auto;
-    width: 100%;
-    object-fit: contain; /* avoid cropping */
+    object-fit: cover;
   }
 
   .product-info h1 {
@@ -565,7 +571,6 @@ textarea.form-control {
   .cart-item img {
     width: 100%;
     height: auto;
-    object-fit: contain; /* avoid cropping */
   }
 
   .form-row {
@@ -587,7 +592,6 @@ textarea.form-control {
 
   .welcome-video-element {
     width: 100%;
-    height: auto;
   }
 
   .product-detail {
@@ -609,9 +613,9 @@ textarea.form-control {
   .thumbnails img {
     width: 70px;
     height: 70px;
-    object-fit: contain; /* avoid cropping */
   }
 }
+    
 
 
   
