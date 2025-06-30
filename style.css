@@ -520,55 +520,98 @@ textarea.form-control {
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
     }
-* Mobile first: keep nav items on one line with smaller font */
 @media (max-width: 768px) {
+  /* NAVBAR: Scrollable and mobile-friendly */
   .nav-links {
-    flex-direction: row;       /* Keep nav links in a row */
+    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
-    padding: 10px 5px;
-    font-size: 14px;           /* Smaller font for narrow screens */
-    overflow-x: auto;          /* Allow horizontal scroll if needed */
-    white-space: nowrap;       /* Prevent wrapping */
+    padding: 10px;
+    font-size: 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    background-color: #eda0c5;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-links li {
-    flex-shrink: 0;            /* Prevent shrinking */
+    flex-shrink: 0;
   }
 
+  /* PRODUCTS: Single column layout */
   .product-container {
     display: grid;
-    grid-template-columns: 1fr; /* One product per row on mobile */
+    grid-template-columns: 1fr;
     gap: 15px;
     padding: 0 10px;
   }
 
+  .product-box {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+  }
+
   .product-box img {
+    width: 100%;
+    height: auto;
     max-height: 250px;
     object-fit: cover;
+    border-radius: 10px;
   }
 
-  .product-info h1 {
-    font-size: 26px;
+  .product-box h3 {
+    font-size: 18px;
   }
 
-  .product-info p,
-  .about-us p,
-  .contact-us p {
+  .product-box p {
     font-size: 16px;
   }
 
+  .add-to-cart {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  /* CART PAGE: Mobile-friendly cart layout */
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 15px;
   }
 
   .cart-item img {
     width: 100%;
     height: auto;
+    border-radius: 8px;
   }
 
+  .cart h1 {
+    font-size: 28px;
+    margin: 20px 0;
+  }
+
+  .cart-item h3 {
+    font-size: 16px;
+  }
+
+  .cart-item p {
+    font-size: 14px;
+  }
+
+  .remove-item {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* FORMS */
   .form-row {
     flex-direction: column;
   }
@@ -578,11 +621,14 @@ textarea.form-control {
     margin-bottom: 10px;
   }
 
+  /* WELCOME */
   .welcome-box h1 {
     font-size: 28px;
   }
 
-  .welcome-box p {
+  .welcome-box p,
+  .about-us p,
+  .contact-us p {
     font-size: 16px;
   }
 
@@ -590,6 +636,7 @@ textarea.form-control {
     width: 100%;
   }
 
+  /* PRODUCT DETAIL PAGE */
   .product-detail {
     flex-direction: column;
     gap: 30px;
@@ -611,15 +658,3 @@ textarea.form-control {
     height: 70px;
   }
 }
-    
-
-  
-
-
- 
-
-
- 
-
-
-
