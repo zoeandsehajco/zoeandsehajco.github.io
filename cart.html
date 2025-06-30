@@ -37,6 +37,27 @@
       z-index: 1000;
       font-size: 16px;
     }
+
+    /* Styles for payment links */
+    .payment-links {
+      margin-top: 30px;
+      font-size: 16px;
+    }
+
+    .payment-links p {
+      margin: 6px 0;
+    }
+
+    .payment-links a {
+      color: #0c79ee;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .payment-links a:hover {
+      color: #dc1e83;
+    }
   </style>
 </head>
 <body>
@@ -63,6 +84,23 @@
       <div class="cart-summary">
         <p id="total-price">Total: $0.00</p>
         <button id="checkout-link" class="gmail-button">Proceed to Checkout</button>
+
+        <!-- Payment Links added here -->
+        <div class="payment-links">
+          <p>We only offer two payment methods: Venmo and Cashapp. Please use the links below to send us your payment.
+
+          </p>
+          <p>
+            <a href="https://venmo.com/zoeandsehajco" target="_blank" rel="noopener noreferrer">
+              Pay via Venmo (@zoeandsehajco)
+            </a>
+          </p>
+          <p>
+            <a href="https://cash.app/$zoeandsehajco" target="_blank" rel="noopener noreferrer">
+              Pay via Cash App ($zoeandsehajco)
+            </a>
+          </p>
+        </div>
       </div>
     </section>
   </main>
