@@ -522,6 +522,7 @@ textarea.form-control {
     }
 
 /* --- Responsive Layout Adjustments --- */
+/* --- Adjustments for Mobile Devices --- */
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: row;
@@ -549,29 +550,41 @@ textarea.form-control {
   .product-box {
     padding: 15px;
     text-align: center;
-    width: 100%;  /* ensure full width */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
 
-  /* product image fills width but keeps aspect ratio */
   .product-box img {
-    width: 100%;        /* full width */
-    height: auto;       /* keep natural height */
-    max-height: 350px;  /* limit max height so not too tall */
-    object-fit: contain; /* show whole image */
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
     border-radius: 10px;
   }
 
   .product-box h3 {
     font-size: 18px;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    margin: 10px 0;
   }
 
   .product-box p {
     font-size: 16px;
+    margin: 5px 0;
   }
 
   .add-to-cart {
     padding: 10px 20px;
     font-size: 15px;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto 0;
   }
 
   .cart-item {
