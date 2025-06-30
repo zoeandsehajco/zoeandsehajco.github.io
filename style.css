@@ -172,7 +172,6 @@ main {
     display: block;
     max-height: 300px; /* Optional: prevents overly tall images */
 }
-}
 
 .product-box h3 {
     font-size: 20px;
