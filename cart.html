@@ -6,8 +6,39 @@
   <title>Cart | ZoeAndSehajCo</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    .gmail-button {
+      display: inline-block;
+      padding: 14px 28px;
+      background-color: #0c79ee;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+      cursor: pointer;
+    }
 
-/* Styles for payment links */
+    .gmail-button:hover {
+      background-color: #dc1e83;
+    }
+
+    #cart-notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+      font-size: 16px;
+    }
+
+    /* Styles for payment links */
     .payment-links {
       margin-top: 30px;
       font-size: 16px;
