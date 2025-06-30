@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const fixedSizePrice = 6.00;
+  const shippingFee = 5.25;
+
   if (!localStorage.getItem('cart')) {
     localStorage.setItem('cart', JSON.stringify([]));
   }
@@ -64,18 +67,17 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    let totalPrice = 0;
+    let subtotal = 0;
 
     cart.forEach(item => {
       const imageSrc = item.image || 'default-image.jpg';
       const name = item.name || 'Unnamed product';
-
-      const price = parseFloat(item.sizePrice) || 0;
       const quantity = parseInt(item.quantity) || 1;
       const id = item.id || '';
       const size = item.size || '';
 
-      totalPrice += price * quantity;
+      const price = fixedSizePrice;
+      subtotal += price * quantity;
 
       const itemEl = document.createElement('div');
       itemEl.classList.add('cart-item');
@@ -117,17 +119,16 @@ document.addEventListener('DOMContentLoaded', function () {
       cartItemsContainer.appendChild(itemEl);
     });
 
-    totalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
+    const total = subtotal + shippingFee;
+
+    totalPriceElement.innerHTML = `
+      <p>Subtotal: $${subtotal.toFixed(2)}</p>
+      <p>Shipping Fee: $${shippingFee.toFixed(2)}</p>
+      <p><strong>Total: $${total.toFixed(2)}</strong></p>
+    `;
+
     updateCartCount();
   }
-
-  const sizePrices = {
-    XS: 6.30,
-    S: 6.40,
-    M: 6.50,
-    L: 6.60,
-    XL: 6.70
-  };
 
   function addToCart(product) {
     if (!product.id) {
@@ -141,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (existing) {
       existing.quantity = (parseInt(existing.quantity) || 0) + 1;
     } else {
-      cart.push({ ...product, quantity: 1, size: '', sizePrice: 0 });
+      cart.push({ ...product, quantity: 1, size: '', sizePrice: fixedSizePrice });
     }
 
     saveCart(cart);
@@ -163,21 +164,18 @@ document.addEventListener('DOMContentLoaded', function () {
         if (this.id === 'addToCart') {
           const name = document.getElementById('productName')?.textContent || 'Unnamed product';
           const productId = name.toLowerCase().replace(/\s+/g, '-');
-          const price = parseFloat(document.getElementById('productPrice')?.textContent.replace(/[^0-9.]/g, '')) || 0;
           const image = document.getElementById('mainImage')?.src || 'default-image.jpg';
 
-          product = { id: productId, name, price, image };
+          product = { id: productId, name, image };
         } else {
           const productBox = this.closest('.product-box');
           if (!productBox) return;
 
           const productId = productBox.dataset.id || productBox.querySelector('h3')?.textContent.toLowerCase().replace(/\s+/g, '-') || '';
           const name = productBox.querySelector('h3')?.textContent || 'Unnamed product';
-          const priceText = productBox.querySelector('p')?.textContent || '$0';
-          const price = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
           const image = productBox.querySelector('img')?.src || 'default-image.jpg';
 
-          product = { id: productId, name, price, image };
+          product = { id: productId, name, image };
         }
 
         addToCart(product);
@@ -221,13 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const item = cart.find(i => i.id === id);
     if (item) {
       item.size = newSize;
-
-      if (newSize && sizePrices[newSize]) {
-        item.sizePrice = sizePrices[newSize];
-      } else {
-        item.sizePrice = 0;
-      }
-
+      item.sizePrice = fixedSizePrice;
       saveCart(cart);
       updateCartUI();
     }
@@ -265,7 +257,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const missingSizeItems = cart.filter(item => !item.size || item.size.trim() === '');
-
       if (missingSizeItems.length > 0) {
         alert('Please select a size for all items before proceeding to checkout.');
         return;
@@ -275,24 +266,26 @@ document.addEventListener('DOMContentLoaded', function () {
       emailBody += `1. Full Name:%0A2. Shipping Address:%0A3. Email Address:%0A4. Payment Method (Venmo or CashApp):%0A5. Payment Account Username:%0A%0A`;
       emailBody += `Order Summary:%0A`;
 
+      const subtotal = cart.reduce((sum, item) => sum + (fixedSizePrice * item.quantity), 0);
+      const total = subtotal + shippingFee;
+
       cart.forEach(item => {
-        emailBody += `• ${item.name} (${item.size}) x${item.quantity} - $${(item.sizePrice * item.quantity).toFixed(2)}%0A`;
+        emailBody += `• ${item.name} (${item.size}) x${item.quantity} - $${(fixedSizePrice * item.quantity).toFixed(2)}%0A`;
       });
 
-      const totalPrice = cart.reduce((sum, i) => sum + (i.sizePrice * i.quantity), 0);
-      emailBody += `%0ATotal Price: $${totalPrice.toFixed(2)}%0A%0AThank you!`;
+      emailBody += `%0ASubtotal: $${subtotal.toFixed(2)}%0AShipping Fee: $${shippingFee.toFixed(2)}%0ATotal: $${total.toFixed(2)}%0A%0AThank you!`;
 
       const subject = encodeURIComponent('Checkout Order');
       const recipient = 'zoeandsehajco@gmail.com';
 
       const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+      const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${emailBody}`;
+      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${emailBody}&tf=1`;
 
       if (isMobile) {
-        const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${emailBody}`;
         window.location.href = mailtoLink;
       } else {
-        const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${emailBody}&tf=1`;
-        window.open(gmailComposeUrl, '_blank');
+        window.open(gmailLink, '_blank');
       }
     });
   }
