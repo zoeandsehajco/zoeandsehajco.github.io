@@ -521,18 +521,26 @@ textarea.form-control {
     transform: translateX(-50%) translateY(0);
     }
 @media (max-width: 768px) {
-  /* NAVBAR: Scrollable and mobile-friendly */
+  /* ✅ HAMBURGER MENU: Only show on phones */
+  .hamburger {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  /* ✅ OPTIONAL: Hide nav links by default on phones */
   .nav-links {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: none;
+    flex-direction: column;
     gap: 10px;
     padding: 10px;
     font-size: 14px;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
     background-color: #eda0c5;
+  }
+
+  .nav-links.show {
+    display: flex;
   }
 
   .nav-links::-webkit-scrollbar {
