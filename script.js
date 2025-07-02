@@ -262,18 +262,24 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      let emailBody = `Hello Zoe and SehajCo,%0A%0AI would like to place an order with the following details:%0A%0A`;
-      emailBody += `1. Full Name:%0A2. Shipping Address:%0A3. Email Address:%0A4. Payment Method (Venmo or CashApp):%0A5. Payment Account Username:%0A%0A`;
-      emailBody += `Order Summary:%0A`;
-
       const subtotal = cart.reduce((sum, item) => sum + (fixedSizePrice * item.quantity), 0);
       const total = subtotal + shippingFee;
 
+      let emailBody = `Information:%0A%0A`;
+      emailBody += `1. Full Name:%0A`;
+      emailBody += `2. Shipping Address (State, City, Zip-code, Address):%0A`;
+      emailBody += `3. Payment Method (Venmo or CashApp):%0A`;
+      emailBody += `4. Payment Account Username:%0A%0A`;
+
+      emailBody += `Order Summary:%0A`;
       cart.forEach(item => {
         emailBody += `• ${item.name} (${item.size}) x${item.quantity} - $${(fixedSizePrice * item.quantity).toFixed(2)}%0A`;
       });
 
-      emailBody += `%0ASubtotal: $${subtotal.toFixed(2)}%0AShipping Fee: $${shippingFee.toFixed(2)}%0ATotal: $${total.toFixed(2)}%0A%0AThank you!`;
+      emailBody += `%0ASubtotal: $${subtotal.toFixed(2)}%0A`;
+      emailBody += `Shipping Fee: $${shippingFee.toFixed(2)}%0A`;
+      emailBody += `Total: $${total.toFixed(2)}%0A%0A`;
+      emailBody += `Please pay the total price through Venmo or CashApp.%0AThank you!`;
 
       const subject = encodeURIComponent('Checkout Order');
       const recipient = 'zoeandsehajco@gmail.com';
