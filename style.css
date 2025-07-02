@@ -521,26 +521,35 @@ textarea.form-control {
     transform: translateX(-50%) translateY(0);
     }
 @media (max-width: 768px) {
-  /* NAVBAR: Scrollable and mobile-friendly */
+  /* NAVBAR: Stack nav links vertically on mobile */
   .nav-links {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;       /* stack vertically */
+    align-items: flex-start;      /* align left */
+    gap: 10px;                    /* spacing between items */
     padding: 10px;
     font-size: 14px;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: visible;          /* no horizontal scroll */
+    white-space: normal;          /* allow wrapping */
     background-color: #eda0c5;
-  }
-
-  .nav-links::-webkit-scrollbar {
-    display: none;
   }
 
   .nav-links li {
     flex-shrink: 0;
+    width: 100%;                  /* full width for easier clicking */
+  }
+
+  .nav-links li a {
+    display: block;               /* make entire li clickable */
+    width: 100%;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Remove scrollbar hide, since no scrolling */
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   /* PRODUCTS: Single column layout */
@@ -657,3 +666,4 @@ textarea.form-control {
     width: 70px;
     height: 70px;
   }
+}
