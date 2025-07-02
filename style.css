@@ -521,37 +521,59 @@ textarea.form-control {
     transform: translateX(-50%) translateY(0);
     }
 @media (max-width: 768px) {
-  /* ✅ HAMBURGER MENU: Only show on phones */
+  /* Show hamburger icon only on phones */
   .hamburger {
     display: block;
     font-size: 30px;
     cursor: pointer;
     padding: 10px;
+    z-index: 1001; /* On top of side menu */
   }
 
-  /* ✅ OPTIONAL: Hide nav links by default on phones */
+  /* Hide regular nav links on phones */
   .nav-links {
     display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    font-size: 14px;
+  }
+
+  /* Side menu (off-canvas) */
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px; /* hide off screen */
+    width: 250px;
+    height: 100vh;
     background-color: #eda0c5;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease;
+    padding-top: 60px; /* spacing from top */
+    z-index: 1000;
   }
 
-  .nav-links.show {
-    display: flex;
+  /* When side menu is active, slide it in */
+  .side-menu.active {
+    left: 0;
   }
 
-  .nav-links::-webkit-scrollbar {
-    display: none;
+  /* Side menu links */
+  .side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .nav-links li {
-    flex-shrink: 0;
+  .side-menu ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #fff;
   }
 
-  /* PRODUCTS: Single column layout */
+  .side-menu ul li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+  }
+
+  /* Keep your existing mobile product styles */
   .product-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -665,4 +687,7 @@ textarea.form-control {
     width: 70px;
     height: 70px;
   }
+}
+.hamburger {
+  display: none;
 }
