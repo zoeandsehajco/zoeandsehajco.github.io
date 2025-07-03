@@ -528,11 +528,12 @@ textarea.form-control {
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    flex-wrap: wrap;
+    /* Removed flex-wrap to keep navbar in one line */
   }
 
   .logo-container {
     flex-shrink: 0;
+    margin-right: 15px; /* spacing between logo and nav */
   }
 
   .logo {
@@ -547,19 +548,19 @@ textarea.form-control {
     gap: 12px;
     padding: 10px 0;
     font-size: 14px;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;      /* enable horizontal scroll */
+    white-space: nowrap;   /* no wrapping */
+    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
     background-color: #eda0c5;
-    width: 100%;
+    width: calc(100% - 65px); /* prevent overflow considering logo width */
   }
 
   .nav-links::-webkit-scrollbar {
-    display: none;
+    display: none; /* hide scrollbar on WebKit browsers */
   }
 
   .nav-links li {
-    flex-shrink: 0;
+    flex-shrink: 0;   /* prevent shrinking */
     list-style: none;
   }
 
@@ -689,11 +690,3 @@ textarea.form-control {
     height: 70px;
   }
 }
-   
-
- 
-   
-   
-
-  
-  
