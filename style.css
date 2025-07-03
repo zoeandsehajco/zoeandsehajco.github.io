@@ -525,25 +525,25 @@ textarea.form-control {
   .navbar {
     display: flex;
     align-items: flex-start;
-    padding: 10px 15px;
+    padding: 10px 10px;
   }
 
   .logo-container {
-    flex-shrink: 0; /* keep logo size */
+    flex-shrink: 0;
   }
 
   .logo {
-    height: auto; /* keep original size */
+    height: auto;
     max-height: none;
   }
 
   .nav-links {
     display: flex;
-    flex-direction: column; /* stack links vertically */
-    margin-left: 20px; /* spacing from logo */
+    flex-direction: column;
+    margin-left: 10px;
     padding: 0;
-    font-size: 13px; /* smaller font */
-    gap: 6px; /* small gap between links */
+    font-size: 11.5px; /* smaller font */
+    gap: 4px; /* less vertical gap */
   }
 
   .nav-links li {
@@ -551,7 +551,7 @@ textarea.form-control {
   }
 
   .nav-links li a {
-    padding: 6px 8px;
+    padding: 4px 6px;
     display: block;
     color: inherit;
     text-decoration: none;
@@ -597,7 +597,7 @@ textarea.form-control {
     font-size: 15px;
   }
 
-  /* CART PAGE: Mobile-friendly cart layout */
+  /* CART PAGE */
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
@@ -677,3 +677,4 @@ textarea.form-control {
     height: 70px;
   }
 }
+    
