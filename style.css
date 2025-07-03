@@ -523,44 +523,54 @@ textarea.form-control {
     }
 }
 @media (max-width: 768px) {
-  /* NAVBAR: logo same size, nav stacked vertically on the right */
+  /* NAVBAR: Scrollable horizontal layout */
   .navbar {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: 10px 15px;
+    flex-wrap: wrap;
   }
 
   .logo-container {
-    flex-shrink: 0; /* keep logo size */
+    flex-shrink: 0;
   }
 
   .logo {
-    height: auto; /* keep original size */
-    max-height: none;
+    height: 50px; /* or your preferred logo height */
+    width: auto;
   }
 
   .nav-links {
     display: flex;
-    flex-direction: column; /* stack links vertically */
-    margin-left: 20px; /* spacing from logo */
-    padding: 0;
-    font-size: 13px; /* smaller font */
-    gap: 6px; /* small gap between links */
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    background-color: #eda0c5;
+    width: 100%;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-links li {
+    flex-shrink: 0;
     list-style: none;
   }
 
   .nav-links li a {
-    padding: 6px 8px;
     display: block;
-    color: inherit;
+    padding: 8px 10px;
     text-decoration: none;
+    color: inherit;
   }
 
-  .nav-links li a:hover,
-  .nav-links li a:focus {
+  .nav-links li a:hover {
     text-decoration: underline;
   }
 
@@ -599,7 +609,7 @@ textarea.form-control {
     font-size: 15px;
   }
 
-  /* CART PAGE: Mobile-friendly cart layout */
+  /* CART PAGE */
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
@@ -678,4 +688,12 @@ textarea.form-control {
     width: 70px;
     height: 70px;
   }
-} 
+}
+   
+
+ 
+   
+   
+
+  
+  
