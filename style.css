@@ -521,35 +521,45 @@ textarea.form-control {
     transform: translateX(-50%) translateY(0);
     }
 @media (max-width: 768px) {
-  /* NAVBAR: Stack nav links vertically on mobile */
+  /* NAVBAR: logo same size, nav stacked vertically on the right */
+  .navbar {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 15px;
+  }
+
+  .logo-container {
+    flex-shrink: 0; /* keep logo size */
+  }
+
+  .logo {
+    height: auto; /* keep original size */
+    max-height: none;
+  }
+
   .nav-links {
     display: flex;
-    flex-direction: column;       /* stack vertically */
-    align-items: flex-start;      /* align left */
-    gap: 10px;                    /* spacing between items */
-    padding: 10px;
-    font-size: 14px;
-    overflow-x: visible;          /* no horizontal scroll */
-    white-space: normal;          /* allow wrapping */
-    background-color: #eda0c5;
+    flex-direction: column; /* stack links vertically */
+    margin-left: 20px; /* spacing from logo */
+    padding: 0;
+    font-size: 13px; /* smaller font */
+    gap: 6px; /* small gap between links */
   }
 
   .nav-links li {
-    flex-shrink: 0;
-    width: 100%;                  /* full width for easier clicking */
+    list-style: none;
   }
 
   .nav-links li a {
-    display: block;               /* make entire li clickable */
-    width: 100%;
-    padding: 8px 12px;
-    text-decoration: none;
+    padding: 6px 8px;
+    display: block;
     color: inherit;
+    text-decoration: none;
   }
 
-  /* Remove scrollbar hide, since no scrolling */
-  .nav-links::-webkit-scrollbar {
-    display: none;
+  .nav-links li a:hover,
+  .nav-links li a:focus {
+    text-decoration: underline;
   }
 
   /* PRODUCTS: Single column layout */
