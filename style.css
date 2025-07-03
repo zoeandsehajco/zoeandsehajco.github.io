@@ -518,29 +518,34 @@ textarea.form-control {
     .add-to-cart-notification.show {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(
-        }
+    transform: translateX(-50%) 
+    padding: 
+    }
+}
 @media (max-width: 768px) {
-  /* NAVBAR: logo on left, nav links stacked on right */
+  /* NAVBAR: logo same size, nav stacked vertically on the right */
   .navbar {
-    flex-direction: row;
+    display: flex;
     align-items: flex-start;
-    justify-content: space-between;
     padding: 10px 15px;
   }
 
   .logo-container {
-    flex-shrink: 0;
+    flex-shrink: 0; /* keep logo size */
+  }
+
+  .logo {
+    height: auto; /* keep original size */
+    max-height: none;
   }
 
   .nav-links {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin: 0;
+    flex-direction: column; /* stack links vertically */
+    margin-left: 20px; /* spacing from logo */
     padding: 0;
-    gap: 4px;
-    font-size: 11.5px;
+    font-size: 13px; /* smaller font */
+    gap: 6px; /* small gap between links */
   }
 
   .nav-links li {
@@ -548,7 +553,7 @@ textarea.form-control {
   }
 
   .nav-links li a {
-    padding: 4px 6px;
+    padding: 6px 8px;
     display: block;
     color: inherit;
     text-decoration: none;
@@ -594,7 +599,7 @@ textarea.form-control {
     font-size: 15px;
   }
 
-  /* CART PAGE */
+  /* CART PAGE: Mobile-friendly cart layout */
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
@@ -673,4 +678,4 @@ textarea.form-control {
     width: 70px;
     height: 70px;
   }
-}
+} 
