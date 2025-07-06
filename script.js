@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const fixedSizePrice = 6.00;
+  const fixedSizePrice = 5.00;
   const shippingFee = 5.25;
 
   if (!localStorage.getItem('cart')) {
