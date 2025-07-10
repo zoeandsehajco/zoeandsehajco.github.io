@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const fixedSizePrice = 6.00;
-  const shippingFee = 4.00;
+  const fixedSizePrice = 6.00;  // price per bracelet
+  const baseShippingFee = 4.00; // base shipping fee
+  let bannerShown = false;
 
   if (!localStorage.getItem('cart')) {
     localStorage.setItem('cart', JSON.stringify([]));
@@ -51,6 +52,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 2000);
   }
 
+  function calculateShipping(cart) {
+    const totalQuantity = cart.reduce((sum, item) => sum + (parseInt(item.quantity) || 0), 0);
+    return totalQuantity >= 3 ? 0 : baseShippingFee;
+  }
+
+  function updateFreeShippingBanner() {
+    let banner = document.getElementById('free-shipping-banner');
+
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'free-shipping-banner';
+      banner.textContent = '🎉 Free Shipping Unlocked!';
+      Object.assign(banner.style, {
+        backgroundColor: '#28a745',
+        color: 'white',
+        padding: '12px',
+        textAlign: 'center',
+        fontSize: '16px',
+        fontWeight: 'bold',
+        display: 'none',
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+        zIndex: '9999',
+      });
+      document.body.appendChild(banner);
+    }
+
+    const cart = getCart();
+    const totalQuantity = cart.reduce((sum, item) => sum + (parseInt(item.quantity) || 0), 0);
+
+    if (totalQuantity === 3 && !bannerShown) {
+      banner.style.display = 'block';
+      bannerShown = true;
+
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 2000);
+    }
+
+    if (totalQuantity < 3) {
+      bannerShown = false; // reset for next time
+    }
+  }
+
   function updateCartUI() {
     const cart = getCart();
     const cartItemsContainer = document.getElementById('cart-items');
@@ -64,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
       cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
       totalPriceElement.textContent = 'Total: $0.00';
       updateCartCount();
+      updateFreeShippingBanner();
       return;
     }
 
@@ -119,15 +167,17 @@ document.addEventListener('DOMContentLoaded', function () {
       cartItemsContainer.appendChild(itemEl);
     });
 
+    const shippingFee = calculateShipping(cart);
     const total = subtotal + shippingFee;
 
     totalPriceElement.innerHTML = `
       <p>Subtotal: $${subtotal.toFixed(2)}</p>
-      <p>Shipping Fee: $${shippingFee.toFixed(2)}</p>
+      <p>Shipping Fee: ${shippingFee === 0 ? 'Free' : `$${shippingFee.toFixed(2)}`}</p>
       <p><strong>Total: $${total.toFixed(2)}</strong></p>
     `;
 
     updateCartCount();
+    updateFreeShippingBanner();
   }
 
   function addToCart(product) {
@@ -263,6 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const subtotal = cart.reduce((sum, item) => sum + (fixedSizePrice * item.quantity), 0);
+      const shippingFee = calculateShipping(cart);
       const total = subtotal + shippingFee;
 
       let emailBody = `Information:%0A%0A`;
@@ -277,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       emailBody += `%0ASubtotal: $${subtotal.toFixed(2)}%0A`;
-      emailBody += `Shipping Fee: $${shippingFee.toFixed(2)}%0A`;
+      emailBody += `Shipping Fee: ${shippingFee === 0 ? 'Free' : `$${shippingFee.toFixed(2)}`}%0A`;
       emailBody += `Total: $${total.toFixed(2)}%0A%0A`;
       emailBody += `Please pay the total price through Venmo or CashApp.%0AThank you!`;
 
@@ -297,6 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   updateCartCount();
+  updateFreeShippingBanner();
 
   if (document.getElementById('cart-items')) {
     updateCartUI();
